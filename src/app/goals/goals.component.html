@@ -1,0 +1,54 @@
+
+<h1>Patient's goals database</h1>
+<form>
+    <mat-form-field class="maxwd">
+        <mat-label>Patient name</mat-label>
+        <input matInput placeholder="John Doe" value="">
+    </mat-form-field>
+    <mat-form-field class="maxwd">
+      <mat-label>Category</mat-label>
+      <input matInput placeholder="Treatment" value="">
+  </mat-form-field>
+    <mat-form-field appearance="fill" class="maxwd">
+        <mat-label>Status code</mat-label>
+        <mat-select [(value)]="selectedStatusCode">
+          <mat-option>None</mat-option>
+          <mat-option value="proposed">Proposed</mat-option>
+          <mat-option value="planned">Planned</mat-option>
+          <mat-option value="accepted">Accepted</mat-option>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="on-hold">On hold</mat-option>
+          <mat-option value="completed">Completed</mat-option>
+          <mat-option value="cancelled">Cancelled</mat-option>
+          <mat-option value="entered-in-error">Entered in error</mat-option>
+          <mat-option value="rejected">Rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div class="maxwd">
+    <mat-label>Priority: </mat-label>
+    <mat-button-toggle-group>
+      <mat-button-toggle value="high">High</mat-button-toggle>
+      <mat-button-toggle value="medium">Medium</mat-button-toggle>
+      <mat-button-toggle value="low">Low</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+    <mat-form-field class="maxwd">
+      <mat-label>Goal date range</mat-label>
+      <mat-date-range-input  [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date">
+        <input matEndDate formControlName="end" placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+    <mat-form-field class="maxwd">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="The goal is..."></textarea>
+  </mat-form-field>
+    <button mat-raised-button color="primary">Create goal for the patient</button>
+</form>
+

@@ -1,18 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
+import { GoalListComponent } from './goal-list/goal-list.component';
+import { GoalService } from "../app/services/goal.service";
+import { environment } from 'src/environments/environment';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GoalListComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [GoalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

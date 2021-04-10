@@ -1,0 +1,17 @@
+.container{
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px){
+    .container{
+        max-width: 600px;
+    }
+}
+.row{    
+    flex-direction: row;
+    max-width: 400px;
+}
