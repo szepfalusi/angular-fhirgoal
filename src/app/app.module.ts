@@ -9,7 +9,6 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { GoalListComponent } from './goal-list/goal-list.component';
 import { GoalService } from "../app/services/goal.service";
 import { environment } from 'src/environments/environment';
 
@@ -19,8 +18,6 @@ import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    GoalListComponent,
-    
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './home.component';
 import { GoalsModule } from '../goals/goals.module';
+import { GoalListModule } from '../goal-list/goal-list.module';
 
 
 
@@ -15,7 +16,9 @@ import { GoalsModule } from '../goals/goals.module';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    GoalsModule
+    GoalsModule,
+    GoalListModule
+
   ],
   exports: [HomeComponent]
 

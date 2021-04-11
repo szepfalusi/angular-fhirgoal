@@ -1,6 +1,6 @@
 
 <h1>Patient's goals database</h1>
-<form>
+<form [formGroup]="this.goalService.form" (ngSubmit)="onSubmit()">
     <mat-form-field class="maxwd">
         <mat-label>Patient name</mat-label>
         <input matInput placeholder="John Doe" value="">
@@ -9,9 +9,9 @@
       <mat-label>Category</mat-label>
       <input matInput placeholder="Treatment" value="">
   </mat-form-field>
-    <mat-form-field appearance="fill" class="maxwd">
+    <mat-form-field class="maxwd">
         <mat-label>Status code</mat-label>
-        <mat-select [(value)]="selectedStatusCode">
+        <mat-select [(value)]="this.goalService.selectedStatusCode">
           <mat-option>None</mat-option>
           <mat-option value="proposed">Proposed</mat-option>
           <mat-option value="planned">Planned</mat-option>
@@ -49,6 +49,6 @@
       <mat-label>Description</mat-label>
       <textarea matInput placeholder="The goal is..."></textarea>
   </mat-form-field>
-    <button mat-raised-button color="primary">Create goal for the patient</button>
+    <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Create goal for the patient</button>
 </form>
 
