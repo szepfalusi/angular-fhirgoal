@@ -3,15 +3,15 @@
 <form [formGroup]="this.goalService.form" (ngSubmit)="onSubmit()">
     <mat-form-field class="maxwd">
         <mat-label>Patient name</mat-label>
-        <input matInput placeholder="John Doe" value="">
+        <input matInput formControlName="patientName" placeholder="John Doe" value="">
     </mat-form-field>
     <mat-form-field class="maxwd">
       <mat-label>Category</mat-label>
-      <input matInput placeholder="Treatment" value="">
+      <input matInput formControlName="category" p laceholder="Treatment" value="">
   </mat-form-field>
     <mat-form-field class="maxwd">
         <mat-label>Status code</mat-label>
-        <mat-select [(value)]="this.goalService.selectedStatusCode">
+        <mat-select [(value)]="this.selectedStatusCode">
           <mat-option>None</mat-option>
           <mat-option value="proposed">Proposed</mat-option>
           <mat-option value="planned">Planned</mat-option>
@@ -27,7 +27,7 @@
 
     <div class="maxwd">
     <mat-label>Priority: </mat-label>
-    <mat-button-toggle-group>
+    <mat-button-toggle-group formControlName="priority">
       <mat-button-toggle value="high">High</mat-button-toggle>
       <mat-button-toggle value="medium">Medium</mat-button-toggle>
       <mat-button-toggle value="low">Low</mat-button-toggle>
@@ -47,8 +47,12 @@
     </mat-form-field>
     <mat-form-field class="maxwd">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="The goal is..."></textarea>
+      <textarea matInput formControlName="description" placeholder="The goal is..."></textarea>
   </mat-form-field>
+  <mat-form-field class="maxwd">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="note" placeholder="Medical log"></textarea>
+</mat-form-field>
     <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Create goal for the patient</button>
 </form>
 

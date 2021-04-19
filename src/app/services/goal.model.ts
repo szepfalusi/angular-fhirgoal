@@ -7,7 +7,7 @@ export interface Goal {
     description?: CodeableConcept;
     subject: string;
     startDate?: Date;
-    target: target[];
+    target?: target[];
     statusDate?: Date;
     statusReason?: string;
     expressedBy?: string;
@@ -20,7 +20,7 @@ export interface Goal {
 export interface target {
     measure?: CodeableConcept;
     detail?: string;
-    due: Date;
+    dueDate: Date;
 }
 
 export interface Identifier {
