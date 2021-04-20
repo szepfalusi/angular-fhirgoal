@@ -12,6 +12,7 @@ import { HomeModule } from './home/home.module';
 import { GoalService } from "../app/services/goal.service";
 import { environment } from 'src/environments/environment';
 import { ModalformComponent } from './modalform/modalform.component';
+import { GoalsComponent } from './goals/goals.component';
 
 
 
@@ -19,7 +20,7 @@ import { ModalformComponent } from './modalform/modalform.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ModalformComponent,
+    ModalformComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +34,7 @@ import { ModalformComponent } from './modalform/modalform.component';
     AngularFirestoreModule
   ],
   providers: [GoalService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalformComponent]
 })
 export class AppModule { }

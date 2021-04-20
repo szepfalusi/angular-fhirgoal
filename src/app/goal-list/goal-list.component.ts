@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { GoalsComponent } from '../goals/goals.component';
 import { ModalformComponent } from '../modalform/modalform.component';
 import { Goal } from '../services/goal.model';
 import { GoalService } from '../services/goal.service';
@@ -35,10 +36,10 @@ export class GoalListComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.id = "modalform-component";
-    dialogConfig.height = "350px";
+    dialogConfig.height = "700px";
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(ModalformComponent, dialogConfig);
+    const modalDialog = this.matDialog.open(GoalsComponent, dialogConfig);
   }
 
 }

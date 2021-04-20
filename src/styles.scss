@@ -1,2 +1,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+mat-dialog-container#modalform-component {
+    border: 3px solid #262626;
+    border-radius: 11px;
+    background-color: #f1e7e7;
+    height: 700px;
+}

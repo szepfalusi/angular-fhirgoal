@@ -10,7 +10,9 @@ import { GoalListModule } from '../goal-list/goal-list.module';
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule,
