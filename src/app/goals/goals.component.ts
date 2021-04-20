@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Goal } from "../services/goal.model";
 import { GoalService } from "../services/goal.service";
 
@@ -9,10 +9,10 @@ import { GoalService } from "../services/goal.service";
   styleUrls: ['./goals.component.scss']
 })
 export class GoalsComponent implements OnInit {
-  goals = [];
   priority = new FormControl();
-  selectedStatusCode: "proposed";
+  lifecycleStatus = new FormControl('',Validators.required);
 
+  /*Only for validation purposes*/
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -27,15 +27,21 @@ export class GoalsComponent implements OnInit {
 
   onSubmit(): void {
     this.goalService.form.value.priority = this.priority.value;
-    this.goalService.form.value.lifecycleStatus = this.selectedStatusCode;
+    this.goalService.form.value.lifecycleStatus = this.lifecycleStatus.value;
     let data = this.goalService.form.value;
+    console.log(this.lifecycleStatus.value);
     
+    if (this.lifecycleStatus.value != '') {
+      this.goalService.createGoal(data)
+      .then(res =>{
+        alert("The goal is documented.");
+        this.lifecycleStatus.reset();
+        this.goalService.form.reset();
+      });
+    }else{
+      alert("Some input field are not valid")
+    }
 
-    this.goalService.createGoal(data)
-    .then(res =>{
-      alert("The goal is documented.");
-      this.goalService.form.reset();
-    });
 
   }
   

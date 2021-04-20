@@ -1,14 +1,23 @@
 <div class="patcontainer">
-    <div *ngFor="let goal of goals" class="patient">
+    <div class="patient" *ngFor="let goal of goals" >
         <ul class="patientlist">
-            <li></li>
-            <li>Status: accepted</li>
-            <li>Category: none</li>
-            <li>Priority: high</li>
-            <li>Goal start: 2019.2.2.</li>
-            <li>Goal end: 2020.4.5.</li>
-            <li>Description: Lorem ipsum dolor sit amet.</li>
+            <li>Name:{{goal.subject}}</li>
+            <li>Status: {{goal.lifecycleStatus}}</li>
+            <li>Category: {{goal.category}}</li>
+            <li>Priority: {{goal.priority}}</li>
+            <li>Goal start: {{goal?.startDate | date: 'yyyy.MM.dd' || ""}}</li>
+            <li>Goal end: {{goal?.target[0]?.dueDate | date: 'yyyy.MM.dd' || ""}}</li>
+            <li>Description: {{goal.description}}</li>
+            <li class="med">Medical log: {{goal.note}}</li>
         </ul>
+        <div class="icons">
+            <mat-icon class="icon" (click)="deleteGoal()">delete</mat-icon>
+            <mat-icon class="icon" (click)="editGoal(goal)">build</mat-icon>
+        </div>
+        <div *ngIf="this.formEdit && this.goaltoEdit.identifier[0].system == goal.identifier[0].system">
+            teszt
+        </div>
+
     </div>
     <!--<div class="patient">
         <ul class="patientlist">

@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Observable } from 'rxjs';
 import { Goal } from "./goal.model";
 import { map } from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { identifierModuleUrl, TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class GoalService {
   form = new FormGroup({
     patientName: new FormControl(''),
     category: new FormControl(''),
-    lifecycleStatus: new FormControl(''),
+    lifecycleStatus: new FormControl('', Validators.required),
     start: new FormControl(''),
     end: new FormControl(''),
     priority: new FormControl(''),
@@ -41,7 +41,7 @@ export class GoalService {
     });
   }
 
-  getOrders(){
+  getGoals(){
     //this.orders = this.firestore.collection('coffeeOrders').valueChanges();
     this.goals = this.afs.collection('patientGoals').snapshotChanges().pipe(map(changes => {
       return changes.map(a=>{
@@ -53,16 +53,18 @@ export class GoalService {
             {system: a.payload.doc.id, use: "usual", assigner: ""}
           ],
           category: data["category"],
-          startDate: data["start"],
+          startDate: new Date(data["start"]?.seconds*1000) as Date,
           target: [
-            {dueDate: data["end"]}
+            {dueDate: new Date(data["end"]?.seconds*1000) as Date}
           ],
           description: data["description"],
-          note: data["note"]
+          note: data["note"],
+          priority: data["priority"]
         }; 
         console.log(tempgoal);
         
-        return tempgoal;
+        
+        return tempgoal as Goal;
       });
     }));
     

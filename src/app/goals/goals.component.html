@@ -11,7 +11,7 @@
   </mat-form-field>
     <mat-form-field class="maxwd">
         <mat-label>Status code</mat-label>
-        <mat-select [(value)]="this.selectedStatusCode">
+        <mat-select [formControl]="lifecycleStatus">
           <mat-option>None</mat-option>
           <mat-option value="proposed">Proposed</mat-option>
           <mat-option value="planned">Planned</mat-option>
@@ -23,11 +23,12 @@
           <mat-option value="entered-in-error">Entered in error</mat-option>
           <mat-option value="rejected">Rejected</mat-option>
         </mat-select>
+        <mat-error *ngIf="lifecycleStatus.hasError('required')">Please choose a status code</mat-error>
       </mat-form-field>
 
     <div class="maxwd">
     <mat-label>Priority: </mat-label>
-    <mat-button-toggle-group formControlName="priority">
+    <mat-button-toggle-group [formControl]="priority">
       <mat-button-toggle value="high">High</mat-button-toggle>
       <mat-button-toggle value="medium">Medium</mat-button-toggle>
       <mat-button-toggle value="low">Low</mat-button-toggle>
@@ -35,7 +36,7 @@
   </div>
     <mat-form-field class="maxwd">
       <mat-label>Goal date range</mat-label>
-      <mat-date-range-input  [rangePicker]="picker">
+      <mat-date-range-input [rangePicker]="picker">
         <input matStartDate formControlName="start" placeholder="Start date">
         <input matEndDate formControlName="end" placeholder="End date">
       </mat-date-range-input>
@@ -50,7 +51,7 @@
       <textarea matInput formControlName="description" placeholder="The goal is..."></textarea>
   </mat-form-field>
   <mat-form-field class="maxwd">
-    <mat-label>Description</mat-label>
+    <mat-label>Note:</mat-label>
     <textarea matInput formControlName="note" placeholder="Medical log"></textarea>
 </mat-form-field>
     <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Create goal for the patient</button>

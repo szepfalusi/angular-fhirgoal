@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { GoalService } from "../app/services/goal.service";
 import { environment } from 'src/environments/environment';
+import { ModalformComponent } from './modalform/modalform.component';
 
 
 
@@ -18,6 +19,7 @@ import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
+    ModalformComponent,
   ],
   imports: [
     BrowserModule,
