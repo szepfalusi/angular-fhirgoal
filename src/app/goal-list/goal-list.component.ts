@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { GoalsComponent } from '../goals/goals.component';
@@ -14,7 +14,6 @@ import { GoalService } from '../services/goal.service';
 export class GoalListComponent implements OnInit {
   goals: Goal[]; //This array contains the getGoals() data, which used in ngOnInit()
   formEdit: boolean = false;
-  goaltoEdit: Goal; 
 
   constructor(public goalService: GoalService, public matDialog: MatDialog) { }
 
@@ -22,24 +21,25 @@ export class GoalListComponent implements OnInit {
     this.goalService.getGoals().subscribe(data =>{
       this.goals = data;
       
-      this.goals.sort((a,b) => a.lifecycleStatus.localeCompare(b.lifecycleStatus));
+      this.goals.sort((a,b) => a.subject.localeCompare(b.subject));
     });
   }
 
-  deleteGoal(){
-    alert('szoker');
+
+  deleteGoal(data: Goal){
+    this.goalService.deleteGoal(data);
   }
 
   editGoal(goal){
     this.formEdit = true;
-    this.goaltoEdit = goal; 
+    this.goalService.goaltoEdit = goal; 
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.id = "modalform-component";
-    dialogConfig.height = "700px";
-    dialogConfig.width = "600px";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "400px";
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(GoalsComponent, dialogConfig);
+    const modalDialog = this.matDialog.open(ModalformComponent, dialogConfig);
   }
 
 }

@@ -11,12 +11,12 @@
             <li class="med">Medical log: {{goal.note}}</li>
         </ul>
         <div class="icons">
-            <mat-icon class="icon" (click)="deleteGoal()">delete</mat-icon>
+            <mat-icon class="icon" (click)="deleteGoal(goal)">delete</mat-icon>
             <mat-icon class="icon" (click)="editGoal(goal)">build</mat-icon>
         </div>
-        <div *ngIf="this.formEdit && this.goaltoEdit.identifier[0].system == goal.identifier[0].system">
+        <!--<div *ngIf="this.formEdit && this.goalService.goaltoEdit?.identifier[0]?.system == goal.identifier[0].system">
             teszt
-        </div>
+        </div>-->
 
     </div>
     <!--<div class="patient">

@@ -14,6 +14,8 @@ export class GoalService {
 
   goals: Observable<Goal[]>;
   goalany: any;
+  goaltoEdit: Goal; 
+
 
   selectedPriority: "";
 
@@ -42,7 +44,6 @@ export class GoalService {
   }
 
   getGoals(){
-    //this.orders = this.firestore.collection('coffeeOrders').valueChanges();
     this.goals = this.afs.collection('patientGoals').snapshotChanges().pipe(map(changes => {
       return changes.map(a=>{
         const data = a.payload.doc.data();
@@ -61,7 +62,7 @@ export class GoalService {
           note: data["note"],
           priority: data["priority"]
         }; 
-        console.log(tempgoal);
+        //console.log(tempgoal);
         
         
         return tempgoal as Goal;
@@ -71,5 +72,19 @@ export class GoalService {
     return this.goals;
   }
 
+  updateGoalStatus(data: Goal) {
+    /*return
+        this.firestore
+        .collection("coffeeOrders")
+        .doc(data.payload.doc.id)
+        .set({ completed: true }, { merge: true });*/
+
+    return this.afs.collection('patientGoals').doc(data.identifier[0].system).set({lifecycleStatus: data.lifecycleStatus}, {merge: true});
+
+ }
+
+ deleteGoal(data: Goal){
+   return this.afs.collection('patientGoals').doc(data.identifier[0].system).delete();
+ }
 
 }

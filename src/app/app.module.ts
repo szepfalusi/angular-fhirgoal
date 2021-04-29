@@ -5,6 +5,12 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +37,11 @@ import { GoalsComponent } from './goals/goals.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [GoalService],
   bootstrap: [AppComponent],

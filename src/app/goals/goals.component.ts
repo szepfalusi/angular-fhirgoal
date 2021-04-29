@@ -29,7 +29,7 @@ export class GoalsComponent implements OnInit {
     this.goalService.form.value.priority = this.priority.value;
     this.goalService.form.value.lifecycleStatus = this.lifecycleStatus.value;
     let data = this.goalService.form.value;
-    console.log(this.lifecycleStatus.value);
+    //console.log(this.lifecycleStatus.value);
     
     if (this.lifecycleStatus.value != '') {
       this.goalService.createGoal(data)

@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './home.component';
 import { GoalsModule } from '../goals/goals.module';
 import { GoalListModule } from '../goal-list/goal-list.module';
-
+import { ModalformModule } from "../modalform/modalform.module";
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { GoalListModule } from '../goal-list/goal-list.module';
     MatButtonModule,
     MatInputModule,
     GoalsModule,
-    GoalListModule
+    GoalListModule,
+    ModalformModule
 
   ],
   exports: [HomeComponent]
