@@ -31,7 +31,7 @@ export class GoalsComponent implements OnInit {
     let data = this.goalService.form.value;
     //console.log(this.lifecycleStatus.value);
     
-    if (this.lifecycleStatus.value != '') {
+    if (this.lifecycleStatus.value != '' && this.range != null) {
       this.goalService.createGoal(data)
       .then(res =>{
         alert("The goal is documented.");
